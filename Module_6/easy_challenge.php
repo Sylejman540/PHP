@@ -7,7 +7,7 @@ $filename = 'example.txt';
 if(file_exists($filename)) {
     $content = file_get_contents($filename);
 
-    echo \n($content);
+    echo ($content);
 } else {
     echo "THe file doesnt exist!!";
 }
