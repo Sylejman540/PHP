@@ -1,6 +1,6 @@
 <?php 
 
-<<<<<<< Updated upstream
+
 // Setting, MySQL, database parameters
 
 $host = 'localhost';
@@ -20,8 +20,7 @@ try{
 }        catch(Exception $e){
     echo "Not connected";
 }
-=======
->>>>>>> Stashed changes
+
 
 
 
