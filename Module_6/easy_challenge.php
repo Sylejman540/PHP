@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php 
 
 
@@ -9,7 +10,7 @@ if(file_exists($filename)) {
 
     echo ($content);
 } else {
-    echo "THe file doesnt exist!!";
+    echo "The file doesnt exist!!";
 }
              
         
@@ -30,3 +31,37 @@ if(file_exists($filename)) {
 
 
 ?>
+=======
+<?php 
+
+
+
+$filename = 'example.txt';
+
+if(file_exists($filename)) {
+    $content = lfie_get_contents($filename);
+
+    echo ($content);
+} else {
+    echo "The file doesnt exist!!";
+}
+             
+        
+          
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+>>>>>>> Stashed changes
