@@ -1,30 +1,41 @@
 <?php 
 
-<<<<<<< Updated upstream
-// Setting, MySQL, database parameters
+// // Setting, MySQL, database parameters
+
+
+// // Connection in database using PDO
+// try{
+//     // Attemt to creat a PDO object and connecting to a MySQL database
+//     // The connection string is contructed using the variables $host, $user and $pass
+
+
+//     $conn = new PDO("mysql:host=$host; $user, $pass");
+
+//     // If connection is successful
+//     echo "Connected";
+// }        catch(Exception $e){
+//     echo "Not connected";
+// }
 
 $host = 'localhost';
 $user = 'root';
 $pass = '';
 
+
+
 // Connection in database using PDO
 try{
-    // Attemt to creat a PDO object and connecting to a MySQL database
-    // The connection string is contructed using the variables $host, $user and $pass
+    $conn = new PDO("mysql:host=$host", $user, $pass);
+  
+    $sql = "CREATE DATABASE testdb";
 
+    $conn -> exec($sql);
 
-    $conn = new PDO("mysql:host=$host; $user, $pass");
-
-    // If connection is successful
-    echo "Connected";
-}        catch(Exception $e){
-    echo "Not connected";
+    echo "Database is created!";
+} catch(Exception $e){
+    echo "Database not created,something went wrong";
 }
-=======
->>>>>>> Stashed changes
-
-
-
+?>
 
 
 
