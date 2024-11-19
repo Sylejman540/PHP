@@ -33,9 +33,9 @@ try{
     $pdo -> exec($sql);
 
 
-    $last_id = mysql_insert_id($conn);
+    $last_id = $pdo -> lastInsertId();
 
-    echo "New record created successfully.Last inserted ID IS:";
+    echo " New record created successfully. Last inserted ID IS: ". $last_id;
 
 }catch(PDOException $e){
     // echo "Error creating table: ".$e ->getMessage();
