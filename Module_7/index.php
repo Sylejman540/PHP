@@ -1,6 +1,6 @@
 <?php 
 
-<<<<<<< HEAD
+
 // // Setting, MySQL, database parameters
 
 
@@ -17,10 +17,10 @@
 // }        catch(Exception $e){
 //     echo "Not connected";
 // }
-=======
+
 
 // Setting, MySQL, database parameters
->>>>>>> 1f1002e19063088611671ea97340e6cc1b07d5af
+
 
 $host = 'localhost';
 $user = 'root';
@@ -40,14 +40,10 @@ try{
 } catch(Exception $e){
     echo "Database not created,something went wrong";
 }
-<<<<<<< HEAD
 ?>
-=======
 
 
 
-
->>>>>>> 1f1002e19063088611671ea97340e6cc1b07d5af
 
 
 
