@@ -7,35 +7,7 @@ echo $username;
 echo "<br>";
 echo $password;
 
-
-
-
-
-
-
-
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
