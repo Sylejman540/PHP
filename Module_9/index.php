@@ -7,7 +7,35 @@ echo $username;
 echo "<br>";
 echo $password;
 
+
+
+
+
+
+
+
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -19,12 +47,15 @@ echo $password;
     <title>Document</title>
 </head>
 <body>
-    <form action="index.php" method="get">
-        <label for="username">Username</label><br>
+    <from action="">
+        <label for="username">Username: <label><br>
         <input type="text" name="username" placeholder="Username"><br>
-        <label for="password">Password</label><br>
-        <input type="password" name="password" placeholder="Password"><br><br>
+        <label for="password">Password: <label><br>
+        <input type="password" name="password" placeholder="Password"><br>
         <input type="submit" value="Submit">
-</form >   
+</form>
+
+
+
 </body>
 </html>
