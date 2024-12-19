@@ -5,6 +5,7 @@ if(!isset($_SESSION['admin_logged_in'])){
     exit();
 }
 
+require_once("config.php");
 //Fetch all users from the database
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
@@ -12,13 +13,7 @@ $result = $conn->query($sql);
 if(!$result){
     die("Database query failed: ".$conn->error);
 }
-?> 
-
-
-
-
-
-
+?>
 
 <?php require_once("header.php"); ?>
 <!DOCTYPE html>
@@ -117,22 +112,22 @@ if(!$result){
                     </tr>
                 </thead>
                 <tbody>
-                <?php 
-                // Check if there are any users
+                <?php
+                //Check if there are any users
                 if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
                         echo "<tr>
-                        <td>{$row['id']} </td>
-                        <td>" .htmlspecialchar($row['username'])."</td>
-                         <td>" .htmlspecialchar($row['username'])."</td>
-                        <td>
-                        <a href = 'edit.php?id={$row[id]}' class = 'btn btn-warning btn-sm'>Edit</a>
-                        <a href = 'edit.php?id={$row[id]}' class = 'btn btn-warning btn-sm'>Edit</a>
-                        </td>
-                        </tr>";
-                    } else{
-                        echo "<tr><td colspan = '4' class='text-center'>No users found</tr>"
+                                <td>{$row['id']}</td>
+                                <td>".htmlspecialchars($row['username'])."</td>
+                                <td>".htmlspecialchars($row['email'])."</td>
+                                <td>
+                                <a href = 'edit.php?id={$row['id']}' class = 'btn btn-warning btn-sm'>Edit</a>
+                                <a href = 'delete.php?id={$row['id']}' class = 'btn btn-warning btn-sm'>Delete</a>
+                                </td>
+                              </tr>";
                     }
+                } else{
+                    echo "<tr><td colspan = '4' class = 'text-center'> No users found </td> </tr>";
                 }
                 ?>
                 </tbody>
@@ -141,4 +136,4 @@ if(!$result){
     </div>
 </body>
 <?php require_once("footer.php"); ?>
-</html>
+</html> 
