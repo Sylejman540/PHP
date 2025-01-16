@@ -2,11 +2,13 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "product_management1";
+$dbname = "mms";
 
+
+try{
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+}catch (PDOException $e) {
+   echo "Error: ", $e->getMessage();
 } 
 ?>
