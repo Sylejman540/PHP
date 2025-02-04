@@ -68,6 +68,12 @@
     <?php endif; ?>
 
     <form action="login.php" method="POST">
+    <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="name" name="name" class="form-control" id="name" required placeholder="Enter your name">
+        </div>
+            
+            
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" id="email" required placeholder="Enter your email">
