@@ -87,8 +87,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
 
         </tr>
         <?php endforeach; ?> 
-</tbody>
-<thead>
+<tbody>
 </table>
 </body>
 </html>

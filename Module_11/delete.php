@@ -1,4 +1,4 @@
-<?php 
+8<?php 
 include 'db.php';
 if(isset($_GET['id'])){
     $id = $_GET['id'];
