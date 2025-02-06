@@ -1,6 +1,9 @@
 
 
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -63,17 +66,7 @@
 <div class="login-container">
     <h2 class="text-center">Login</h2>
 
-    <?php if (isset($_SESSION["error"])): ?>
-        <p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
-    <?php endif; ?>
-
-    <form action="login.php" method="POST">
-    <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="name" name="name" class="form-control" id="name" required placeholder="Enter your name">
-        </div>
-            
-            
+    <form action="index.php" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" id="email" required placeholder="Enter your email">
@@ -84,10 +77,10 @@
             <input type="password" name="password" class="form-control" id="password" required placeholder="Enter your password">
         </div>
 
-        <button type="submit" class="btn btn-custom w-100">Log In</button>
+        <button type="submit" class="btn btn-custom w-100">Login</button>
     </form>
 
-    <p class="text-center mt-3">Don't have an account? <a href="signup.php">Sign Up</a></p>
+    <p class="text-center mt-3">Dont have an account? <a href="signup.php">Sign Up</a></p>
 </div>
 
 <!-- Bootstrap 5 JS -->
