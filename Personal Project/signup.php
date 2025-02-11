@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,7 +61,7 @@
 <div class="login-container">
     <h2 class="text-center">Sign Up</h2>
 
-    <form action="register.php" method="POST">
+    <form action="dashboard.php" method="POST">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" name="name" class="form-control" id="name" required placeholder="Enter your name">
