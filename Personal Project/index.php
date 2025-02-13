@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-// Initialize tasks if not already set
 if (!isset($_SESSION['tasks'])) {
     $_SESSION['tasks'] = [];
 }
 
-// Handle adding a new task
 if (isset($_POST['addTask'])) {
     $taskName = trim($_POST['taskName']);
     if (!empty($taskName)) {
@@ -15,35 +13,30 @@ if (isset($_POST['addTask'])) {
             'completed' => false
         ];
     }
-    // Redirect to avoid resubmission on page refresh
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 
-// Handle deleting a task
 if (isset($_GET['delete'])) {
     $indexToDelete = (int) $_GET['delete'];
     if (isset($_SESSION['tasks'][$indexToDelete])) {
         array_splice($_SESSION['tasks'], $indexToDelete, 1);
     }
-    // Redirect back
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 
-// Handle toggling task completion
 if (isset($_GET['complete'])) {
     $indexToComplete = (int) $_GET['complete'];
     if (isset($_SESSION['tasks'][$indexToComplete])) {
         $_SESSION['tasks'][$indexToComplete]['completed'] =
             !$_SESSION['tasks'][$indexToComplete]['completed'];
     }
-    // Redirect back
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 
-// Calculate progress
 $totalTasks = count($_SESSION['tasks']);
 $completedTasks = 0;
 foreach ($_SESSION['tasks'] as $task) {
@@ -60,12 +53,8 @@ $progressPercent = $totalTasks > 0
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management</title>
-
-    <!-- Bootstrap 5 CSS -->
+    <title>Task Mastery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Styles -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -118,7 +107,6 @@ $progressPercent = $totalTasks > 0
         <div class="task-container">
             <h2 class="text-center">Task Manager</h2>
 
-            <!-- Form to add tasks -->
             <form method="POST" action="">
                 <div class="mb-4">
                     <input type="text" name="taskName" class="form-control" placeholder="Enter a new task">
@@ -126,7 +114,6 @@ $progressPercent = $totalTasks > 0
                 </div>
             </form>
 
-            <!-- Task list -->
             <div>
                 <h4>Your Tasks</h4>
                 <div id="taskList">
@@ -135,16 +122,15 @@ $progressPercent = $totalTasks > 0
                             <div class="task-item <?php echo $task['completed'] ? 'completed' : ''; ?>">
                                 <span><?php echo htmlspecialchars($task['name']); ?></span>
                                 <div>
-                                    <!-- Toggle completion -->
                                     <a href="?complete=<?php echo $index; ?>"
                                        class="btn btn-sm btn-success btn-task">
                                         <?php echo $task['completed'] ? 'Undo' : 'Complete'; ?>
                                     </a>
-                                    <!-- Delete task -->
+    
                                     <a href="?delete=<?php echo $index; ?>"
                                        class="btn btn-sm btn-danger btn-task"
-                                       onclick="return confirm('Are you sure you want to delete this task?');">
-                                        Delete
+                                      onclick="return confirm('Are you sure you want to delete this task?');">
+                                        Delete 
                                     </a>
                                 </div>
                             </div>
@@ -155,7 +141,6 @@ $progressPercent = $totalTasks > 0
                 </div>
             </div>
 
-            <!-- Progress bar -->
             <div class="mt-4">
                 <h5>Progress</h5>
                 <div class="progress">
@@ -170,8 +155,6 @@ $progressPercent = $totalTasks > 0
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap 5 JS (optional, for any Bootstrap components that need JS) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
