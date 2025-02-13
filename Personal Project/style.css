@@ -1,18 +1,16 @@
-/* Global Reset & Box Sizing */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  /* Basic Body Styles */
   body {
     font-family: Arial, sans-serif;
     background-color: #fafafa;
     color: #333;
   }
   
-  /* ===== Header / Nav Bar ===== */
   .header {
     display: flex;
     justify-content: space-between;
@@ -33,7 +31,6 @@
     gap: 1rem;
   }
   
-  /* ===== Buttons ===== */
   .btn-primary {
     background-color: #635bff;
     color: #fff;
@@ -62,7 +59,6 @@
     background-color: #efefef;
   }
   
-  /* ===== Hero Section ===== */
   .hero {
     background-color: #fff;
     padding: 3rem 2rem;
@@ -84,7 +80,7 @@
   }
   
   .hero h1 span {
-    color: #635bff; /* highlight color */
+    color: #635bff;
   }
   
   .subtitle {
@@ -121,8 +117,7 @@
     font-size: 0.9rem;
     color: #333;
   }
-  
-  /* CTA button in hero */
+
   .cta-button {
     font-size: 1.1rem;
     padding: 0.9rem 1.5rem;
@@ -134,7 +129,6 @@
     color: #888;
   }
   
-  /* ===== Testimonials Section ===== */
   .testimonials {
     text-align: center;
     background-color: #fafafa;
@@ -150,7 +144,6 @@
     color: #635bff;
   }
   
-  /* Single testimonial card */
   .testimonial-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -190,11 +183,10 @@
   }
   
   .stars {
-    color: #f1c40f; /* star color */
+    color: #f1c40f; 
     font-size: 1rem;
   }
   
-  /* ===== Footer ===== */
   .footer {
     background-color: #fff;
     text-align: center;
@@ -213,13 +205,12 @@
     align-items: center;
     justify-content: center;
     padding: 40px;
-    max-width: 600px; /* optional max width */
-    margin: 0 auto; /* center on page */
-    background: #f7f7f7; /* light background */
+    max-width: 600px;
+    margin: 0 auto; 
+    background: #f7f7f7; 
     border-radius: 8px;
   }
   
-  /* Heading styling */
   .contact h1 {
     font-family: Arial, sans-serif;
     font-size: 2rem;
@@ -228,9 +219,8 @@
     text-align: center;
   }
   
-  /* Specific style for the <span> within the heading */
   .contact h1 span {
-    color: #0074D9; /* accent color */
+    color: #0074D9;
   }
   
   /* Input container */
@@ -240,14 +230,12 @@
     flex-direction: column;
   }
   
-  /* Label styles (even if they are empty, this provides consistency) */
   .contact .input label {
     margin: 8px 0 4px;
     font-weight: 600;
     font-size: 0.9rem;
   }
   
-  /* Text and email input fields */
   .contact .input input[type="text"],
   .contact .input input[type="email"] {
     padding: 12px;
@@ -262,15 +250,14 @@
   .contact .input input[type="text"]:focus,
   .contact .input input[type="email"]:focus {
     outline: none;
-    border-color: #0074D9; /* highlight color */
-  }
+    border-color: #0074D9; }
   
-  /* Submit button styling */
+
   .contact .input button {
     padding: 12px;
     border: none;
     border-radius: 4px;
-    background: #0074D9; /* accent color */
+    background: #0074D9; 
     color: #fff;
     font-size: 1rem;
     cursor: pointer;
