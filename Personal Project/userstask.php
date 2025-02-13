@@ -1,0 +1,174 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['tasks'])) {
+    $_SESSION['tasks'] = [];
+}
+
+if (!isset($_SESSION['deletedTasks'])) {
+    $_SESSION['deletedTasks'] = [];
+}
+
+if (isset($_POST['addTask'])) {
+    $taskName = trim($_POST['taskName']);
+    if (!empty($taskName)) {
+        $_SESSION['tasks'][] = [
+            'name'      => $taskName,
+            'completed' => false
+        ];
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+if (isset($_GET['delete'])) {
+    $indexToDelete = (int) $_GET['delete'];
+    if (isset($_SESSION['tasks'][$indexToDelete])) {
+        $_SESSION['deletedTasks'][] = $_SESSION['tasks'][$indexToDelete];
+        
+        array_splice($_SESSION['tasks'], $indexToDelete, 1);
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+if (isset($_GET['complete'])) {
+    $indexToComplete = (int) $_GET['complete'];
+    if (isset($_SESSION['tasks'][$indexToComplete])) {
+        $_SESSION['tasks'][$indexToComplete]['completed'] =
+            !$_SESSION['tasks'][$indexToComplete]['completed'];
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+$totalTasks = count($_SESSION['tasks']);
+$completedTasks = 0;
+foreach ($_SESSION['tasks'] as $task) {
+    if ($task['completed']) {
+        $completedTasks++;
+    }
+}
+$progressPercent = $totalTasks > 0
+    ? round(($completedTasks / $totalTasks) * 100)
+    : 0;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Mastery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('images/blue-sky.jpg');
+            background-size: cover;
+            min-height: 100vh;
+        }
+        .task-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .task-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-item.completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .progress-bar {
+            background-color: skyblue;
+            height: 20px;
+            transition: width 0.5s;
+        }
+        .progress-bar.complete {
+            background-color: limegreen;
+        }
+        .btn-task {
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="task-container">
+            <h2 class="text-center">Task Manager</h2>
+            <form method="POST" action="">
+                <div class="mb-4">
+                    <input type="text" name="taskName" class="form-control" placeholder="Enter a new task">
+                    <button type="submit" name="addTask" class="btn btn-primary w-100 btn-task mt-2">
+                        Add Task
+                    </button>
+                </div>
+            </form>
+            <div>
+                <h4>Active Tasks</h4>
+                <div id="taskList">
+                    <?php if (!empty($_SESSION['tasks'])): ?>
+                        <?php foreach ($_SESSION['tasks'] as $index => $task): ?>
+                            <div class="task-item <?php echo $task['completed'] ? 'completed' : ''; ?>">
+                                <span><?php echo htmlspecialchars($task['name']); ?></span>
+                                <div>
+                                    <a href="?complete=<?php echo $index; ?>"
+                                       class="btn btn-sm btn-success btn-task">
+                                        <?php echo $task['completed'] ? 'Undo' : 'Complete'; ?>
+                                    </a>
+                                    <a href="?delete=<?php echo $index; ?>"
+                                       class="btn btn-sm btn-danger btn-task"
+                                       onclick="return confirm('Are you sure you want to delete this task?');">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No active tasks.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h5>Progress</h5>
+                <div class="progress">
+                    <div id="progressBar"
+                         class="progress-bar <?php echo ($progressPercent === 100 && $totalTasks > 0) ? 'complete' : ''; ?>"
+                         style="width: <?php echo $progressPercent; ?>%;">
+                    </div>
+                </div>
+                <p id="progressText" class="text-center mt-1">
+                    <?php echo $progressPercent; ?>% Complete
+                </p>
+            </div>
+
+            <div class="mt-4">
+                <h4>Deleted Tasks</h4>
+                <div id="deletedTaskList">
+                    <?php if (!empty($_SESSION['deletedTasks'])): ?>
+                        <?php foreach ($_SESSION['deletedTasks'] as $deletedTask): ?>
+                            <div class="task-item completed">
+                                <span><?php echo htmlspecialchars($deletedTask['name']); ?></span>
+                                <!-- Optionally show completed status if you want -->
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No deleted tasks.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
