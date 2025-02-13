@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -31,6 +29,10 @@
             max-width: 400px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
+
+        input{
+            width: 100%;
+        }
         
         .form-control {
             border-radius: 8px;
@@ -60,11 +62,19 @@
     </style>
 </head>
 <body>
-
 <div class="login-container">
+<form action="dashboard.php" method="POST">
     <h2 class="text-center">Login</h2>
 
-    <form action="dashboard.php" method="POST">
+    <?php if (isset($_SESSION["error"])): ?>
+        <p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
+    <?php endif; ?>
+    <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="name" name="name" class="form-control" id="name" required placeholder="Enter your name">
+        </div>
+            
+            
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" id="email" required placeholder="Enter your email">
@@ -76,13 +86,11 @@
         </div>
 
         <button type="submit" class="btn btn-custom w-100">Login</button>
-    </form>
 
     <p class="text-center mt-3">Dont have an account? <a href="signup.php">Sign Up</a></p>
 </div>
-
+</form>
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
